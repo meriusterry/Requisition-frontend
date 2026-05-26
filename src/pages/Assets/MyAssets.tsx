@@ -703,6 +703,7 @@ const MyAssets: React.FC = () => {
           </div>
         </div>
       )}
+      
     </Layout>
   );
 };

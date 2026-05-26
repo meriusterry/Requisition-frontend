@@ -254,130 +254,41 @@ export const mockInventory: InventoryItem[] = [
   { id: 30, name: 'Noise Cancelling Headphones', code: 'AUD-001', type: 'Audio', quantity: 10, reserved: 2, available: 8, location: 'ICT Store, Aisle 5' }
 ];
 
-// Mock Assets - Complete with all types (Laptop, Screen/Monitor, Mouse, Pen, Sugar, Keyboard, Storage, Accessories, Electronics, Coffee, Stationery, Audio)
+// Mock Assets - Complete with all types
 export const mockAssets: Asset[] = [
-  // ========== LAPTOP ASSETS ==========
-  { id: 1, asset_tag: 'AST-2024-001', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123456', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 1500 },
-  { id: 2, asset_tag: 'AST-2024-004', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123459', assigned_to: 'Mike Wilson', department: 'ICT', assigned_date: '2024-01-12', status: 'Assigned', purchase_cost: 1200 },
-  { id: 3, asset_tag: 'AST-2024-005', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123460', assigned_to: 'Alice Johnson', department: 'ICT', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 1350 },
-  { id: 4, asset_tag: 'AST-2024-007', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123462', assigned_to: 'Robert Chen', department: 'ICT', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 2300 },
-  { id: 5, asset_tag: 'AST-2024-010', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123465', assigned_to: 'Lisa Wong', department: 'ICT', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 1500 },
-  { id: 6, asset_tag: 'AST-2024-011', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123466', assigned_to: 'Sarah Johnson', department: 'Finance', assigned_date: '2024-01-08', status: 'Assigned', purchase_cost: 1200 },
-  { id: 7, asset_tag: 'AST-2024-014', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123469', assigned_to: 'Michael Brown', department: 'Finance', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 1350 },
-  { id: 8, asset_tag: 'AST-2024-016', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123471', assigned_to: 'Emma Davis', department: 'Finance', assigned_date: '2024-01-12', status: 'Assigned', purchase_cost: 1500 },
-  { id: 9, asset_tag: 'AST-2024-018', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123473', assigned_to: 'James Wilson', department: 'Finance', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 1200 },
-  { id: 10, asset_tag: 'AST-2024-019', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123474', assigned_to: 'Emily Brown', department: 'HR', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 1350 },
-  { id: 11, asset_tag: 'AST-2024-021', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123476', assigned_to: 'Jessica Taylor', department: 'HR', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 1500 },
-  { id: 12, asset_tag: 'AST-2024-023', name: 'MacBook Air', type: 'Laptop', category: 'Laptop', serial_number: 'SN123478', assigned_to: 'Daniel Martinez', department: 'HR', assigned_date: '2024-01-22', status: 'Assigned', purchase_cost: 1200 },
-  { id: 13, asset_tag: 'AST-2024-025', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123480', assigned_to: 'Patricia Lee', department: 'Operations', assigned_date: '2024-01-14', status: 'Assigned', purchase_cost: 1200 },
-  { id: 14, asset_tag: 'AST-2024-026', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123481', assigned_to: 'Thomas Anderson', department: 'Operations', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 1500 },
-  { id: 15, asset_tag: 'AST-2024-028', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123483', assigned_to: 'Jennifer Garcia', department: 'Operations', assigned_date: '2024-01-17', status: 'Assigned', purchase_cost: 1350 },
-  { id: 16, asset_tag: 'AST-2024-030', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123485', assigned_to: 'Christopher White', department: 'Operations', assigned_date: '2024-01-21', status: 'Assigned', purchase_cost: 1200 },
-  { id: 17, asset_tag: 'AST-2024-031', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123486', assigned_to: 'David Chen', department: 'Marketing', assigned_date: '2024-01-16', status: 'Assigned', purchase_cost: 2300 },
-  { id: 18, asset_tag: 'AST-2024-034', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123489', assigned_to: 'Sophia Martinez', department: 'Marketing', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 2300 },
-  { id: 19, asset_tag: 'AST-2024-038', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123493', assigned_to: 'Isabella Lee', department: 'Marketing', assigned_date: '2024-01-22', status: 'Assigned', purchase_cost: 1500 },
-  { id: 20, asset_tag: 'AST-2024-039', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123494', assigned_to: 'Patricia Lee', department: 'Procurement', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 1350 },
-  { id: 21, asset_tag: 'AST-2024-041', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123496', assigned_to: 'Kevin Zhang', department: 'Procurement', assigned_date: '2024-01-21', status: 'Assigned', purchase_cost: 1200 },
-  { id: 22, asset_tag: 'AST-2024-042', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123497', assigned_to: 'Maria Garcia', department: 'Administration', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 1500 },
-  { id: 23, asset_tag: 'AST-2024-044', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123499', assigned_to: 'William Turner', department: 'Administration', assigned_date: '2024-01-19', status: 'Assigned', purchase_cost: 1350 },
+  // ========== JOHN SMITH'S ASSETS (For MyAssets page - assigned_to: 'John Smith') ==========
+  { id: 1, asset_tag: 'AST-2024-001', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123001', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 1500 },
+  { id: 2, asset_tag: 'AST-2024-002', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123002', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 350 },
+  { id: 3, asset_tag: 'AST-2024-003', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123003', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-12', status: 'Under Repair', purchase_cost: 1200 },
+  { id: 4, asset_tag: 'AST-2024-004', name: 'Wireless Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123004', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 25 },
+  { id: 5, asset_tag: 'AST-2024-005', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123005', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 1350 },
+  { id: 6, asset_tag: 'AST-2024-006', name: 'Mechanical Keyboard', type: 'Keyboard', category: 'Keyboard', serial_number: 'SN123006', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 120 },
+  { id: 7, asset_tag: 'AST-2024-007', name: 'Webcam 4K', type: 'Electronics', category: 'Webcam', serial_number: 'SN123007', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-22', status: 'Assigned', purchase_cost: 150 },
   
-  // Available Laptops
-  { id: 24, asset_tag: 'AST-2024-045', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123500', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1500 },
-  { id: 25, asset_tag: 'AST-2024-046', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123501', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1200 },
-  { id: 26, asset_tag: 'AST-2024-047', name: 'HP EliteBook', type: 'Laptop', category: 'Laptop', serial_number: 'SN123502', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1350 },
-  { id: 27, asset_tag: 'AST-2024-048', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123503', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 2300 },
+  // ========== OTHER EMPLOYEES' ASSETS ==========
+  { id: 8, asset_tag: 'AST-2024-008', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123008', assigned_to: 'Sarah Johnson', department: 'Finance', assigned_date: '2024-01-08', status: 'Assigned', purchase_cost: 2300 },
+  { id: 9, asset_tag: 'AST-2024-009', name: 'Ultrawide Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123009', assigned_to: 'Mike Wilson', department: 'ICT', assigned_date: '2024-01-12', status: 'Assigned', purchase_cost: 1000 },
+  { id: 10, asset_tag: 'AST-2024-010', name: 'Designer Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123010', assigned_to: 'David Chen', department: 'Marketing', assigned_date: '2024-01-16', status: 'Assigned', purchase_cost: 60 },
+  { id: 11, asset_tag: 'AST-2024-011', name: 'Laptop Docking Station', type: 'Accessories', category: 'Docking Station', serial_number: 'SN123011', assigned_to: 'Lisa Wong', department: 'ICT', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 200 },
+  { id: 12, asset_tag: 'AST-2024-012', name: 'Graphics Monitor 32"', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123012', assigned_to: 'Robert Chen', department: 'ICT', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 800 },
   
-  // ========== SCREEN/MONITOR ASSETS ==========
-  { id: 28, asset_tag: 'AST-2024-002', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123457', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 350 },
-  { id: 29, asset_tag: 'AST-2024-003', name: 'Ultrawide Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123458', assigned_to: 'Mike Wilson', department: 'ICT', assigned_date: '2024-01-12', status: 'Assigned', purchase_cost: 1000 },
-  { id: 30, asset_tag: 'AST-2024-006', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123461', assigned_to: 'Alice Johnson', department: 'ICT', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 350 },
-  { id: 31, asset_tag: 'AST-2024-008', name: 'Graphics Monitor 32"', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123463', assigned_to: 'Robert Chen', department: 'ICT', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 800 },
-  { id: 32, asset_tag: 'AST-2024-015', name: 'Dual Monitor Setup', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123470', assigned_to: 'Michael Brown', department: 'Finance', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 600 },
-  { id: 33, asset_tag: 'AST-2024-017', name: 'Portable Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123472', assigned_to: 'Emma Davis', department: 'Finance', assigned_date: '2024-01-12', status: 'Assigned', purchase_cost: 250 },
-  { id: 34, asset_tag: 'AST-2024-020', name: 'External Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123475', assigned_to: 'Emily Brown', department: 'HR', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 250 },
-  { id: 35, asset_tag: 'AST-2024-022', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123477', assigned_to: 'Jessica Taylor', department: 'HR', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 350 },
-  { id: 36, asset_tag: 'AST-2024-027', name: 'Ultrawide Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123482', assigned_to: 'Thomas Anderson', department: 'Operations', assigned_date: '2024-01-10', status: 'Assigned', purchase_cost: 1000 },
-  { id: 37, asset_tag: 'AST-2024-032', name: 'Graphics Monitor 32"', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123487', assigned_to: 'David Chen', department: 'Marketing', assigned_date: '2024-01-16', status: 'Assigned', purchase_cost: 800 },
-  { id: 38, asset_tag: 'AST-2024-035', name: 'Graphics Monitor 32"', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123490', assigned_to: 'Sophia Martinez', department: 'Marketing', assigned_date: '2024-01-18', status: 'Assigned', purchase_cost: 800 },
-  { id: 39, asset_tag: 'AST-2024-040', name: 'Portable Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123495', assigned_to: 'Patricia Lee', department: 'Procurement', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 250 },
-  { id: 40, asset_tag: 'AST-2024-043', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123498', assigned_to: 'Maria Garcia', department: 'Administration', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 350 },
-  
-  // Available Monitors
-  { id: 41, asset_tag: 'AST-2024-049', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123504', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 350 },
-  { id: 42, asset_tag: 'AST-2024-050', name: 'Ultrawide Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123505', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1000 },
-  { id: 43, asset_tag: 'AST-2024-051', name: 'Graphics Monitor 32"', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123506', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 800 },
-  
-  // ========== MOUSE ASSETS ==========
-  { id: 44, asset_tag: 'AST-2024-033', name: 'Designer Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123488', assigned_to: 'David Chen', department: 'Marketing', assigned_date: '2024-01-16', status: 'Assigned', purchase_cost: 60 },
-  
-  // Available Mice
-  { id: 45, asset_tag: 'AST-2024-055', name: 'Wireless Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123515', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 25 },
-  { id: 46, asset_tag: 'AST-2024-056', name: 'Ergonomic Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123516', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 40 },
-  { id: 47, asset_tag: 'AST-2024-057', name: 'Designer Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123517', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 60 },
-  { id: 48, asset_tag: 'AST-2024-058', name: 'Gaming Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123518', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 80 },
-  
-  // ========== PEN ASSETS ==========
-  // Available Pens (non-asset items, but kept for consistency)
-  { id: 49, asset_tag: 'AST-2024-059', name: 'Pilot Pen Pack', type: 'Pen', category: 'Pen', serial_number: 'SN123519', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 3 },
-  { id: 50, asset_tag: 'AST-2024-060', name: 'Premium Pens (Box of 12)', type: 'Pen', category: 'Pen', serial_number: 'SN123520', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 25 },
-  { id: 51, asset_tag: 'AST-2024-061', name: 'Whiteboard Markers', type: 'Pen', category: 'Pen', serial_number: 'SN123521', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 10 },
-  { id: 52, asset_tag: 'AST-2024-062', name: 'Fountain Pen', type: 'Pen', category: 'Pen', serial_number: 'SN123522', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 50 },
-  
-  // ========== SUGAR ASSETS ==========
-  // Available Sugar items
-  { id: 53, asset_tag: 'AST-2024-063', name: 'Sugar Packets (50ct)', type: 'Sugar', category: 'Sugar', serial_number: 'SN123523', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 5 },
-  { id: 54, asset_tag: 'AST-2024-064', name: 'Sugar Dispenser Set', type: 'Sugar', category: 'Sugar', serial_number: 'SN123524', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 15 },
-  { id: 55, asset_tag: 'AST-2024-065', name: 'Brown Sugar (2lb)', type: 'Sugar', category: 'Sugar', serial_number: 'SN123525', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 8 },
-  
-  // ========== KEYBOARD ASSETS ==========
-  { id: 56, asset_tag: 'AST-2024-066', name: 'Mechanical Keyboard', type: 'Keyboard', category: 'Keyboard', serial_number: 'SN123526', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 120 },
-  { id: 57, asset_tag: 'AST-2024-067', name: 'Wireless Keyboard', type: 'Keyboard', category: 'Keyboard', serial_number: 'SN123527', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 45 },
-  
-  // ========== STORAGE ASSETS ==========
-  { id: 58, asset_tag: 'AST-2024-068', name: '1TB External SSD', type: 'Storage', category: 'Storage', serial_number: 'SN123528', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 175 },
-  { id: 59, asset_tag: 'AST-2024-069', name: '2TB External SSD', type: 'Storage', category: 'Storage', serial_number: 'SN123529', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 280 },
-  { id: 60, asset_tag: 'AST-2024-070', name: 'External Hard Drive 2TB', type: 'Storage', category: 'Storage', serial_number: 'SN123530', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 120 },
-  { id: 61, asset_tag: 'AST-2024-071', name: 'External Hard Drive 4TB', type: 'Storage', category: 'Storage', serial_number: 'SN123531', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 180 },
-  
-  // ========== ACCESSORIES ASSETS ==========
-  { id: 62, asset_tag: 'AST-2024-009', name: 'Laptop Docking Station', type: 'Accessories', category: 'Docking Station', serial_number: 'SN123464', assigned_to: 'Lisa Wong', department: 'ICT', assigned_date: '2024-01-20', status: 'Assigned', purchase_cost: 200 },
-  { id: 63, asset_tag: 'AST-2024-013', name: 'Laptop Docking Station', type: 'Accessories', category: 'Docking Station', serial_number: 'SN123468', assigned_to: 'Sarah Johnson', department: 'Finance', assigned_date: '2024-01-15', status: 'Assigned', purchase_cost: 200 },
-  
-  // Available Accessories
-  { id: 64, asset_tag: 'AST-2024-052', name: 'Laptop Docking Station', type: 'Accessories', category: 'Docking Station', serial_number: 'SN123507', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 200 },
-  { id: 65, asset_tag: 'AST-2024-072', name: 'USB-C Hub', type: 'Accessories', category: 'Accessories', serial_number: 'SN123532', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 80 },
-  
-  // ========== ELECTRONICS ASSETS ==========
-  { id: 66, asset_tag: 'AST-2024-024', name: 'Webcam 4K', type: 'Electronics', category: 'Webcam', serial_number: 'SN123479', assigned_to: 'Patricia Lee', department: 'Operations', assigned_date: '2024-01-14', status: 'Assigned', purchase_cost: 150 },
-  { id: 67, asset_tag: 'AST-2024-029', name: 'Conference Speaker', type: 'Electronics', category: 'Speaker', serial_number: 'SN123484', assigned_to: 'Jennifer Garcia', department: 'Operations', assigned_date: '2024-01-17', status: 'Assigned', purchase_cost: 200 },
-  
-  // Available Electronics
-  { id: 68, asset_tag: 'AST-2024-053', name: 'Webcam 4K', type: 'Electronics', category: 'Webcam', serial_number: 'SN123508', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 150 },
-  { id: 69, asset_tag: 'AST-2024-073', name: 'Conference Camera', type: 'Electronics', category: 'Electronics', serial_number: 'SN123533', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 400 },
-  
-  // ========== COFFEE ASSETS ==========
-  { id: 70, asset_tag: 'AST-2024-074', name: 'Coffee Beans (2lb)', type: 'Coffee', category: 'Coffee', serial_number: 'SN123534', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 50 },
-  { id: 71, asset_tag: 'AST-2024-075', name: 'K-Cup Pods (48ct)', type: 'Coffee', category: 'Coffee', serial_number: 'SN123535', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 35 },
-  
-  // ========== STATIONERY ASSETS ==========
-  { id: 72, asset_tag: 'AST-2024-076', name: 'Notebooks (Pack of 5)', type: 'Stationery', category: 'Stationery', serial_number: 'SN123536', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 15 },
-  { id: 73, asset_tag: 'AST-2024-077', name: 'Sticky Notes (Pack)', type: 'Stationery', category: 'Stationery', serial_number: 'SN123537', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 5 },
-  { id: 74, asset_tag: 'AST-2024-078', name: 'Binder Clips Set', type: 'Stationery', category: 'Stationery', serial_number: 'SN123538', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 8 },
-  
-  // ========== AUDIO ASSETS ==========
-  { id: 75, asset_tag: 'AST-2024-054', name: 'Noise Cancelling Headphones', type: 'Audio', category: 'Headphones', serial_number: 'SN123509', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 500 },
-  { id: 76, asset_tag: 'AST-2024-079', name: 'Conference Speaker', type: 'Audio', category: 'Audio', serial_number: 'SN123539', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 200 },
+  // ========== AVAILABLE ASSETS ==========
+  { id: 13, asset_tag: 'AST-2024-013', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123013', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1500 },
+  { id: 14, asset_tag: 'AST-2024-014', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123014', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 1200 },
+  { id: 15, asset_tag: 'AST-2024-015', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123015', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 350 },
+  { id: 16, asset_tag: 'AST-2024-016', name: 'Wireless Mouse', type: 'Mouse', category: 'Mouse', serial_number: 'SN123016', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 25 },
+  { id: 17, asset_tag: 'AST-2024-017', name: 'Wireless Keyboard', type: 'Keyboard', category: 'Keyboard', serial_number: 'SN123017', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 45 },
+  { id: 18, asset_tag: 'AST-2024-018', name: 'Pilot Pen Pack', type: 'Pen', category: 'Pen', serial_number: 'SN123018', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 3 },
+  { id: 19, asset_tag: 'AST-2024-019', name: 'Sugar Packets (50ct)', type: 'Sugar', category: 'Sugar', serial_number: 'SN123019', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 5 },
+  { id: 20, asset_tag: 'AST-2024-020', name: 'Coffee Beans (2lb)', type: 'Coffee', category: 'Coffee', serial_number: 'SN123020', assigned_to: null, department: null, assigned_date: '2024-01-25', status: 'Available', purchase_cost: 50 },
   
   // ========== UNDER REPAIR ASSETS ==========
-  { id: 77, asset_tag: 'AST-2024-080', name: 'Dell XPS Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123510', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Under Repair', purchase_cost: 1500 },
-  { id: 78, asset_tag: 'AST-2024-081', name: 'Lenovo ThinkPad', type: 'Laptop', category: 'Laptop', serial_number: 'SN123511', assigned_to: 'Sarah Johnson', department: 'Finance', assigned_date: '2024-01-08', status: 'Under Repair', purchase_cost: 1200 },
-  { id: 79, asset_tag: 'AST-2024-082', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123512', assigned_to: 'David Chen', department: 'Marketing', assigned_date: '2024-01-16', status: 'Under Repair', purchase_cost: 2300 },
-  { id: 80, asset_tag: 'AST-2024-083', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123540', assigned_to: 'Mike Wilson', department: 'ICT', assigned_date: '2024-01-12', status: 'Under Repair', purchase_cost: 350 },
+  { id: 21, asset_tag: 'AST-2024-021', name: 'MacBook Pro', type: 'Laptop', category: 'Laptop', serial_number: 'SN123021', assigned_to: 'John Smith', department: 'ICT', assigned_date: '2024-01-10', status: 'Under Repair', purchase_cost: 2300 },
+  { id: 22, asset_tag: 'AST-2024-022', name: 'Dell 27" Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123022', assigned_to: 'Mike Wilson', department: 'ICT', assigned_date: '2024-01-12', status: 'Under Repair', purchase_cost: 350 },
   
   // ========== RETIRED ASSETS ==========
-  { id: 81, asset_tag: 'AST-2023-001', name: 'Old Dell Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123513', assigned_to: null, department: null, assigned_date: '2023-12-01', status: 'Retired', purchase_cost: 800 },
-  { id: 82, asset_tag: 'AST-2023-002', name: 'Old Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123514', assigned_to: null, department: null, assigned_date: '2023-12-01', status: 'Retired', purchase_cost: 200 },
-  { id: 83, asset_tag: 'AST-2023-003', name: 'Old Printer', type: 'Electronics', category: 'Printer', serial_number: 'SN123515', assigned_to: null, department: null, assigned_date: '2023-12-01', status: 'Retired', purchase_cost: 300 }
+  { id: 23, asset_tag: 'AST-2023-001', name: 'Old Dell Laptop', type: 'Laptop', category: 'Laptop', serial_number: 'SN123023', assigned_to: null, department: null, assigned_date: '2023-12-01', status: 'Retired', purchase_cost: 800 },
+  { id: 24, asset_tag: 'AST-2023-002', name: 'Old Monitor', type: 'Screen/Monitor', category: 'Monitor', serial_number: 'SN123024', assigned_to: null, department: null, assigned_date: '2023-12-01', status: 'Retired', purchase_cost: 200 }
 ];
 
 // Dashboard Stats
@@ -468,8 +379,23 @@ export const fetchInventory = (): Promise<InventoryItem[]> => {
   return Promise.resolve([...mockInventory]);
 };
 
+// Update the fetchMyAssets function in mockData.ts
 export const fetchMyAssets = (userId?: number): Promise<Asset[]> => {
-  return Promise.resolve(mockAssets.filter(a => a.assigned_to === 'John Smith' && a.status === 'Assigned'));
+  // Get the current user from localStorage
+  const storedUser = localStorage.getItem('user');
+  let currentUserName = 'John Smith'; // Default
+  
+  if (storedUser) {
+    try {
+      const user = JSON.parse(storedUser);
+      currentUserName = user.full_name || user.name || 'John Smith';
+    } catch (e) {
+      console.error('Failed to parse user', e);
+    }
+  }
+  
+  // Return assets assigned to the current user
+  return Promise.resolve(mockAssets.filter(a => a.assigned_to === currentUserName && a.status === 'Assigned'));
 };
 
 export const fetchAllAssets = (): Promise<Asset[]> => {

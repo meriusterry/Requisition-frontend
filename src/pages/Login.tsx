@@ -17,10 +17,14 @@ const Login: React.FC = () => {
     setLoading(true);
     
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      const success = await login(email, password);
+      if (success) {
+        navigate('/dashboard');
+      } else {
+        setError('Invalid email or password');
+      }
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -55,7 +59,7 @@ const Login: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="admin@company.com"
+                placeholder="admin@requisition.com"
                 required
               />
             </div>
@@ -88,10 +92,8 @@ const Login: React.FC = () => {
         </form>
         
         <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-xs text-center text-gray-600 mb-2">Demo Accounts (use any password):</p>
-          <p className="text-xs text-center text-gray-500">admin@company.com</p>
-          <p className="text-xs text-center text-gray-500">employee@company.com</p>
-          <p className="text-xs text-center text-gray-500 mt-2">Any email/password works for demo</p>
+          <p className="text-xs text-center text-gray-600 mb-2">Login Credentials:</p>
+          <p className="text-xs text-center text-gray-500">admin@requisition.com / Password123!</p>
         </div>
       </div>
     </div>

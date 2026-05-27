@@ -1,82 +1,132 @@
-import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
-import { User, UserPermission } from '../types';
-import { getUserPermissions, hasPermission as checkPermission } from '../services/permissionService';
+// src/contexts/AuthContext.tsx
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+
+interface User {
+    id: number;
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    role: string;
+    department_id: number;
+    department_name?: string;
+}
 
 interface AuthContextType {
-  user: User | null;
-  loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  isAuthenticated: boolean;
-  hasPermission: (permissionName: string, action: 'view' | 'create' | 'edit' | 'delete' | 'approve') => boolean;
-  userPermissions: UserPermission[];
+    user: User | null;
+    loading: boolean;
+    isAuthenticated: boolean;
+    login: (email: string, password: string) => Promise<boolean>;
+    logout: () => void;
+    hasPermission: (resource: string, action: string) => boolean;
+    hasRole: (roles: string | string[]) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const API_URL = 'http://localhost:3000/api';
+
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within AuthProvider');
-  return context;
+    const context = useContext(AuthContext);
+    if (!context) {
+        throw new Error('useAuth must be used within AuthProvider');
+    }
+    return context;
 };
 
-export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
-  const [userPermissions, setUserPermissions] = useState<UserPermission[]>([]);
-  const [loading, setLoading] = useState(true);
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [user, setUser] = useState<User | null>(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      const parsedUser = JSON.parse(savedUser);
-      setUser(parsedUser);
-      const perms = getUserPermissions(parsedUser.id);
-      setUserPermissions(perms);
-    }
-    setLoading(false);
-  }, []);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        const storedUser = localStorage.getItem('user');
+        
+        if (token && storedUser) {
+            try {
+                const parsedUser = JSON.parse(storedUser);
+                setUser(parsedUser);
+                verifyToken(token);
+            } catch (error) {
+                console.error('Failed to parse stored user:', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+            }
+        }
+        setLoading(false);
+    }, []);
 
-  const login = async (email: string, password: string) => {
-    // Mock login - in real app, call API
-    const mockUser: User = {
-      id: email.includes('admin') ? 1 : email.includes('manager') ? 2 : 3,
-      name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
-      email: email,
-      role_id: email.includes('admin') ? 1 : email.includes('manager') ? 2 : 3,
-      role_name: email.includes('admin') ? 'Admin' : email.includes('manager') ? 'Manager' : 'Employee',
-      department: 'IT',
-      is_active: true,
+    const verifyToken = async (token: string) => {
+        try {
+            const response = await axios.get(`${API_URL}/auth/me`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            
+            if (response.data.success && response.data.data) {
+                setUser(response.data.data);
+                localStorage.setItem('user', JSON.stringify(response.data.data));
+            } else {
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                setUser(null);
+            }
+        } catch (error) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            setUser(null);
+        }
     };
-    
-    setUser(mockUser);
-    const perms = getUserPermissions(mockUser.id);
-    setUserPermissions(perms);
-    localStorage.setItem('user', JSON.stringify(mockUser));
-  };
 
-  const logout = () => {
-    setUser(null);
-    setUserPermissions([]);
-    localStorage.removeItem('user');
-  };
+    const login = async (email: string, password: string): Promise<boolean> => {
+        try {
+            const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+            
+            if (response.data.success && response.data.data) {
+                const { token, ...userData } = response.data.data;
+                
+                localStorage.setItem('token', token);
+                localStorage.setItem('user', JSON.stringify(userData));
+                setUser(userData);
+                toast.success(`Welcome, ${userData.first_name} ${userData.last_name}!`);
+                return true;
+            } else {
+                toast.error(response.data.message || 'Login failed');
+                return false;
+            }
+        } catch (error: any) {
+            const errorMessage = error.response?.data?.message || 'Invalid email or password';
+            toast.error(errorMessage);
+            return false;
+        }
+    };
 
-  const hasPermission = (permissionName: string, action: 'view' | 'create' | 'edit' | 'delete' | 'approve'): boolean => {
-    if (!user) return false;
-    if (user.role_name === 'Admin') return true;
-    return checkPermission(user.id, permissionName, action);
-  };
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null);
+        toast.success('Logged out successfully');
+    };
 
-  return (
-    <AuthContext.Provider value={{
-      user,
-      loading,
-      login,
-      logout,
-      isAuthenticated: !!user,
-      hasPermission,
-      userPermissions
-    }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    const hasPermission = (resource: string, action: string): boolean => {
+        if (!user) return false;
+        if (user.role === 'admin') return true;
+        if (user.role === 'manager') return true;
+        return false;
+    };
+
+    const hasRole = (roles: string | string[]): boolean => {
+        if (!user) return false;
+        if (typeof roles === 'string') {
+            return user.role === roles;
+        }
+        return roles.includes(user.role);
+    };
+
+    return (
+        <AuthContext.Provider value={{ user, loading, isAuthenticated: !!user, login, logout, hasPermission, hasRole }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };

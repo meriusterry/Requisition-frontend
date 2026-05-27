@@ -1,3 +1,4 @@
+// src/pages/Dashboard.tsx - Fix the user display
 import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout/Layout';
 import { useAuth } from '../contexts/AuthContext';
@@ -22,6 +23,15 @@ const Dashboard: React.FC = () => {
   const [departmentStats, setDepartmentStats] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState(true);
 
+  // Get user's full name
+  const getFullName = () => {
+    if (!user) return 'Guest';
+    if (user.first_name && user.last_name) {
+      return `${user.first_name} ${user.last_name}`;
+    }
+    return user.username || user.email || 'User';
+  };
+
   useEffect(() => {
     loadData();
   }, []);
@@ -33,7 +43,6 @@ const Dashboard: React.FC = () => {
         fetchMyAssets()
       ]);
       
-      // Calculate department statistics
       const deptStats: Record<string, number> = {};
       requisitions.forEach(req => {
         const dept = req.department || 'Unassigned';
@@ -92,10 +101,13 @@ const Dashboard: React.FC = () => {
   return (
     <Layout>
       <div className="space-y-6">
-        {/* Welcome Banner */}
+        {/* Welcome Banner - FIXED: Use getFullName() instead of user?.name */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-lg p-6 text-white">
-          <h1 className="text-2xl font-bold">Welcome back, {user?.name}!</h1>
-          <p className="mt-2 text-blue-100">Department: {user?.department || 'Not Assigned'}</p>
+          <h1 className="text-2xl font-bold">Welcome back, {getFullName()}!</h1>
+          <p className="mt-2 text-blue-100">
+            Role: {user?.role || 'Not Assigned'} | 
+            Department: {user?.department_name || 'Not Assigned'}
+          </p>
         </div>
 
         {/* Stats Grid */}
@@ -208,7 +220,7 @@ const Dashboard: React.FC = () => {
                         {new Date(req.created_at).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                        ${req.total_cost.toLocaleString()}
+                        ${req.total_cost?.toLocaleString() || 0}
                       </td>
                       <td className="px-6 py-4">
                         <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(req.status)}`}>

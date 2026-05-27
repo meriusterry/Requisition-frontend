@@ -1,4 +1,4 @@
-// In Sidebar.tsx, update the menuItems to include All Assets for admin
+// src/components/Layout/Sidebar.tsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -19,7 +19,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen }) => {
   const { user, hasPermission } = useAuth();
-  const isAdmin = user?.role_name === 'Admin' || hasPermission('assets', 'view_all');
+  const isAdmin = user?.role === 'admin' || hasPermission('assets', 'view_all');
 
   const menuItems = [
     { path: '/dashboard', icon: FiHome, label: 'Dashboard' },

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Backend Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 50px; }
+        button { padding: 10px 20px; margin: 10px; cursor: pointer; }
+        .success { color: green; }
+        .error { color: red; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Backend Connection Test</h1>
+    <div>
+        <button onclick="testHealth()">Test Health</button>
+        <button onclick="testCORS()">Test CORS</button>
+        <button onclick="testLogin()">Test Login</button>
+        <button onclick="testGetUsers()">Test Get Users (with token)</button>
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const API_URL = 'http://localhost:3000';
+        
+        async function testHealth() {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                const data = await response.json();
+                displayResult('Health Check', data, true);
+            } catch (error) {
+                displayResult('Health Check', { error: error.message }, false);
+            }
+        }
+
+        async function testCORS() {
+            try {
+                const response = await fetch(`${API_URL}/test-cors`);
+                const data = await response.json();
+                displayResult('CORS Test', data, true);
+            } catch (error) {
+                displayResult('CORS Test', { error: error.message }, false);
+            }
+        }
+
+        async function testLogin() {
+            try {
+                const response = await fetch(`${API_URL}/api/auth/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: 'admin@requisition.com',
+                        password: 'Password123!'
+                    })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    localStorage.setItem('token', data.data.token);
+                    displayResult('Login Test', data, true);
+                } else {
+                    displayResult('Login Test', data, false);
+                }
+            } catch (error) {
+                displayResult('Login Test', { error: error.message }, false);
+            }
+        }
+
+        async function testGetUsers() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                displayResult('Get Users', { error: 'Please login first' }, false);
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/api/users`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                const data = await response.json();
+                displayResult('Get Users', data, response.ok);
+            } catch (error) {
+                displayResult('Get Users', { error: error.message }, false);
+            }
+        }
+
+        function displayResult(title, data, isSuccess) {
+            const resultDiv = document.getElementById('result');
+            const result = `
+                <div style="margin-top: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px;">
+                    <h3 class="${isSuccess ? 'success' : 'error'}">${title} ${isSuccess ? '✓' : '✗'}</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                </div>
+            `;
+            resultDiv.innerHTML = result + resultDiv.innerHTML;
+        }
+    </script>
+</body>
+</html>

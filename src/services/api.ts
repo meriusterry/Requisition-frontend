@@ -328,6 +328,13 @@ class ApiService {
         return this.request(`/users/${id}`);
     }
 
+    async createUser(userData: any) {
+        return this.request('/users', {
+            method: 'POST',
+            data: userData,
+        });
+    }
+
     async updateUser(id: number, data: any) {
         return this.request(`/users/${id}`, {
             method: 'PUT',
@@ -338,6 +345,12 @@ class ApiService {
     async deleteUser(id: number) {
         return this.request(`/users/${id}`, {
             method: 'DELETE',
+        });
+    }
+
+    async resetUserPassword(id: number) {
+        return this.request(`/users/${id}/reset-password`, {
+            method: 'POST',
         });
     }
 
